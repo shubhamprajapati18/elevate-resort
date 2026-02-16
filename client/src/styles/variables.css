@@ -1,0 +1,38 @@
+:root {
+  /* Luxury Color Palette */
+  --color-emerald-dark: #0f2e2a;
+  --color-emerald-medium: #1a4d45;
+  --color-gold: #c6a75e;
+  --color-gold-light: #e5c57e;
+  --color-gold-hover: #d4b46a;
+  --color-white: #ffffff;
+  --color-black: #111111;
+  --color-charcoal: #1c1c1c;
+  --color-champagne: #f5e6cc;
+  --color-gray-light: #f8f8f8;
+  --color-text-dark: #222222;
+  --color-text-light: #eeeeee;
+
+  /* Typography */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Poppins", sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+  --spacing-xxl: 128px;
+
+  /* Animations */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.5s ease;
+  --transition-slow: 0.8s ease;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --shadow-gold: 0 4px 15px rgba(198, 167, 94, 0.3);
+}

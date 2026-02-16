@@ -1,0 +1,121 @@
+.testimonial-section {
+  background-color: var(--color-white);
+}
+
+.testimonial-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.slider-btn {
+  background-color: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.slider-btn:hover {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+}
+
+.testimonial-card {
+  flex: 1;
+  text-align: center;
+  padding: var(--spacing-xl);
+  background-color: var(--color-gray-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.quote-icon {
+  font-size: 2rem;
+  color: var(--color-gold-light);
+  margin-bottom: var(--spacing-md);
+}
+
+.testimonial-text {
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-dark);
+}
+
+.testimonial-rating {
+  color: var(--color-gold);
+  margin-bottom: var(--spacing-md);
+}
+
+.testimonial-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.testimonial-user img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-info h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--color-emerald-dark);
+}
+
+.user-info span {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  color: #666; /* Specific dark gray */
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: var(--spacing-lg);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-gray-light);
+  border-radius: 50%; /* Rounded, not square? Yes */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #ccc;
+}
+
+.dot.active {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+@media screen and (max-width: 768px) {
+  .testimonial-slider {
+    flex-direction: column;
+  }
+
+  .slider-btn {
+    display: none; /* Hide arrows on mobile, rely on dots/swipe if implemented */
+  }
+}

@@ -1,0 +1,33 @@
+.admin-login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-gray-light);
+}
+
+.login-container {
+  background-color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 400px;
+  border-top: 4px solid var(--color-gold);
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-emerald-dark);
+}
+
+.error-msg {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}

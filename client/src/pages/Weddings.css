@@ -1,0 +1,237 @@
+/* Weddings & Events Page Redesign */
+
+.weddings-page-design {
+  font-family: "Poppins", sans-serif;
+}
+
+/* --- Shared Section Styles --- */
+.wedding-section {
+  padding: 5rem 1rem;
+}
+
+.wedding-section.light {
+  background-color: #ffffff;
+}
+
+.wedding-section.dark {
+  background-color: #0b1c15; /* Deep Emerald */
+  color: #fff;
+}
+
+/* Typography */
+.sub-heading {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c6a75e; /* Gold */
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.main-heading {
+  font-family: "Playfair Display", serif;
+  font-size: 2.8rem;
+  color: #0b1c15;
+  margin: 0;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.wedding-section.dark .main-heading {
+  color: #ffffff;
+}
+
+.section-desc-center {
+  text-align: center;
+  max-width: 700px;
+  margin: 1.5rem auto 3rem;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.wedding-section.dark .section-desc-center {
+  color: #a0a0a0;
+}
+
+/* --- Wedding Lawn Section (Split with Features) --- */
+.lawn-content-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 968px) {
+  .lawn-content-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lawn-image-wrapper img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 20px 20px 0 rgba(198, 167, 94, 0.2);
+}
+
+.lawn-text-content p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.inquire-btn {
+  background-color: #d6bc78;
+  color: #0b1c15;
+  padding: 1rem 2.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 1rem;
+}
+
+.inquire-btn:hover {
+  background-color: #e3cfa0;
+  transform: translateY(-2px);
+}
+
+/* Lawn Features Grid (4 cards row) */
+.lawn-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 4rem auto 0;
+}
+
+.lawn-feature-card {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Soft shadow */
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s;
+}
+
+.lawn-feature-card:hover {
+  transform: translateY(-5px);
+  border-color: #d6bc78;
+}
+
+.lawn-icon {
+  font-size: 2rem;
+  color: #d6bc78;
+  margin-bottom: 1rem;
+}
+
+.lawn-feature-card h4 {
+  font-family: "Playfair Display", serif;
+  margin-bottom: 0.5rem;
+  color: #222;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.lawn-feature-card span {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.5;
+  display: block;
+}
+
+/* --- Poolside Functions (Dark) --- */
+.poolside-content-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+}
+
+@media (max-width: 968px) {
+  .poolside-content-split {
+    grid-template-columns: 1fr;
+  }
+  .poolside-text-col {
+    order: 2;
+  }
+  .poolside-img-col {
+    order: 1;
+  }
+}
+
+.poolside-text-col p {
+  color: #b0b0b0;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* Green Glass Cards */
+.poolside-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #d6bc78;
+}
+
+.glass-icon {
+  color: #d6bc78;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.glass-card h5 {
+  color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.glass-card span {
+  color: #999;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  display: block;
+}
+
+.poolside-img-col img {
+  width: 100%;
+  border-radius: 8px;
+  /* Adjust image to look enticing */
+  object-fit: cover;
+  min-height: 400px;
+  box-shadow: -20px 20px 0 rgba(198, 167, 94, 0.1);
+}
+
+.separator-center {
+  width: 60px;
+  height: 2px;
+  background-color: #d6bc78;
+  margin: 1rem auto;
+}

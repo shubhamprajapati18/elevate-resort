@@ -1,0 +1,96 @@
+.room-card {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-medium);
+  border: 1px solid transparent;
+}
+
+.room-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-gold-light);
+}
+
+.room-image {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.room-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.room-card:hover .room-image img {
+  transform: scale(1.1);
+}
+
+.room-price {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  padding: 8px 16px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-top-left-radius: 12px;
+}
+
+.room-content {
+  padding: var(--spacing-lg);
+}
+
+.room-content h3 {
+  font-size: 1.5rem;
+  color: var(--color-emerald-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.room-content p {
+  color: var(--color-text-dark);
+  font-size: 0.95rem;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.room-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--spacing-md);
+}
+
+.amenity-tag {
+  background-color: var(--color-gray-light);
+  color: var(
+    --color-text-light
+  ); /* Wait, text-light is EEE, on gray-light F8F8? Contrast issue. */
+  color: #666; /* Fixed contrast */
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.room-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  border-top: 1px solid var(--color-gray-light);
+  padding-top: var(--spacing-md);
+}
+
+.icon-row {
+  display: flex;
+  gap: 12px;
+  color: var(--color-gold);
+  font-size: 1.1rem;
+}
