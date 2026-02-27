@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PageHeader from "../components/common/PageHeader";
 import "./Weddings.css";
+import headerImage from "../assets/H1.png";
+import lawnImage from "../assets/H2.png";
+import poolsideImage from "../assets/scene17.png";
 import {
   FaUserFriends,
   FaFan,
@@ -13,6 +17,8 @@ import {
 import AOS from "aos";
 
 const Weddings = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.refresh();
   }, []);
@@ -22,7 +28,7 @@ const Weddings = () => {
       <PageHeader
         title="WEDDINGS & EVENTS"
         subtitle="Create timeless memories at Gorakhpur's most prestigious wedding destination."
-        bgImage="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        bgImage={headerImage}
       />
 
       {/* --- Section 1: The Wedding Lawn --- */}
@@ -43,10 +49,7 @@ const Weddings = () => {
           {/* Setup Split */}
           <div className="lawn-content-split">
             <div className="lawn-image-wrapper" data-aos="fade-right">
-              <img
-                src="https://i.pinimg.com/1200x/d4/9e/ae/d49eaec1fd128542eb69857c51a214d0.jpg"
-                alt="Wedding Lawn Setup"
-              />
+              <img src={lawnImage} alt="Wedding Lawn Setup" />
             </div>
             <div className="lawn-text-content" data-aos="fade-left">
               <p>
@@ -70,7 +73,12 @@ const Weddings = () => {
                 minimal setups. At Elevate Resort, your wedding isn't just an
                 event; it's a masterpiece.
               </p>
-              <button className="inquire-btn">INQUIRE NOW</button>
+              <button
+                className="inquire-btn"
+                onClick={() => navigate("/contact-us")}
+              >
+                INQUIRE NOW
+              </button>
             </div>
           </div>
 
@@ -134,29 +142,28 @@ const Weddings = () => {
           {/* Header */}
           <div className="text-center" data-aos="fade-up">
             <span className="sub-heading">PRE-WEDDING FESTIVITIES</span>
-            <h2 className="main-heading">POOLSIDE FUNCTIONS</h2>
+            <h2 className="main-heading">BANQUET HALL FUNCTIONS</h2>
             <div className="separator-center"></div>
             <p className="section-desc-center">
               From vibrant Haldi ceremonies to sparkling cocktail evenings, our
-              poolside venues add a splash of magic to your celebrations.
+              elegant banquet hall adds timeless charm to your celebrations.
             </p>
           </div>
 
           <div className="poolside-content-split">
             <div className="poolside-text-col" data-aos="fade-right">
               <p>
-                Our poolside event area transforms into a vibrant celebration
-                space for Haldi, Mehendi, Sangeet, and cocktail parties. With
-                dedicated DJ decks, ambient lighting, and professionally
-                designed décor setups, every pre-wedding function becomes an
-                unforgettable experience.
+                Our fully air-conditioned banquet hall transforms into a grand
+                celebration space for Haldi, Mehendi, Sangeet, wedding
+                receptions, and cocktail parties. With a spacious dance floor,
+                dedicated DJ setup, premium sound system, ambient lighting, and
+                professionally designed décor arrangements, every pre-wedding
+                and wedding function becomes an unforgettable experience.
               </p>
               <p>
-                Safety is our priority — our swimming pool features 24/7
-                ozonation filtration technology, ensuring crystal-clear, safe
-                water for all guests. The poolside area can be customized with
-                floating flowers, lanterns, and themed decorations to match your
-                celebration's color palette.
+                The hall can be beautifully customized with floral backdrops,
+                stage décor, themed lighting, drapes, and centerpieces to
+                perfectly match your celebration’s color palette and theme.
               </p>
 
               {/* 3 Green Glass Cards */}
@@ -187,14 +194,16 @@ const Weddings = () => {
                 </div>
               </div>
 
-              <button className="inquire-btn">PLAN YOUR FUNCTION</button>
+              <button
+                className="inquire-btn"
+                onClick={() => navigate("/contact-us")}
+              >
+                PLAN YOUR FUNCTION
+              </button>
             </div>
 
             <div className="poolside-img-col" data-aos="fade-left">
-              <img
-                src="https://i.pinimg.com/736x/e5/ff/4e/e5ff4e17dcabdaed21400614b77c317c.jpg"
-                alt="Poolside Haldi Function"
-              />
+              <img src={poolsideImage} alt="Poolside Haldi Function" />
             </div>
           </div>
         </div>

@@ -1,15 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const Content = require("../models/Content");
+const supabase = require("../supabaseClient");
 const auth = require("../middleware/auth");
+const { v4: uuidv4 } = require("uuid");
 
 // @route   GET api/content/:sectionId
 // @desc    Get content by section ID
 // @access  Public
 router.get("/:sectionId", async (req, res) => {
   try {
-    const content = await Content.findOne({ sectionId: req.params.sectionId });
-    if (!content) return res.status(404).json({ msg: "Content not found" });
+    const { data: content, error } = await supabase
+      .from("content")
+      .select("*")
+      .eq("sectionId", req.params.sectionId)
+      .single();
+
+    if (error || !content)
+      return res.status(404).json({ msg: "Content not found" });
+
     res.json(content);
   } catch (err) {
     console.error(err.message);
@@ -24,32 +32,38 @@ router.post("/", auth, async (req, res) => {
   const { sectionId, title, subtitle, body, images, isVisible } = req.body;
 
   try {
-    let content = await Content.findOne({ sectionId });
+    const { data: existingContent } = await supabase
+      .from("content")
+      .select("id")
+      .eq("sectionId", sectionId)
+      .single();
 
-    if (content) {
+    if (existingContent) {
       // Update
-      content = await Content.findOneAndUpdate(
-        { sectionId },
-        { $set: { title, subtitle, body, images, isVisible } },
-        { new: true },
-      );
-      return res.json(content);
+      const { data: updatedContent, error: updateError } = await supabase
+        .from("content")
+        .update({ title, subtitle, body, images, isVisible })
+        .eq("sectionId", sectionId)
+        .select()
+        .single();
+
+      if (updateError) throw updateError;
+      return res.json(updatedContent);
     }
 
     // Create
-    content = new Content({
-      sectionId,
-      title,
-      subtitle,
-      body,
-      images,
-      isVisible,
-    });
+    const { data: newContent, error: insertError } = await supabase
+      .from("content")
+      .insert([
+        { id: uuidv4(), sectionId, title, subtitle, body, images, isVisible },
+      ])
+      .select()
+      .single();
 
-    await content.save();
-    res.json(content);
+    if (insertError) throw insertError;
+    res.json(newContent);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send("Server Error");
   }
 });

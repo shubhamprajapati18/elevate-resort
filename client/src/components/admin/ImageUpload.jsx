@@ -17,14 +17,8 @@ const ImageUpload = ({ onUpload, existingImage }) => {
     setUploading(true);
 
     try {
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-
-      const res = await axios.post(`${API_URL}/api/upload`, formData, config);
-      const fullUrl = `${API_URL}${res.data.filePath}`;
+      const res = await axios.post(`${API_URL}/api/upload`, formData);
+      const fullUrl = res.data.filePath; // <--- The backend now returns the full public URL
 
       setUploadedUrl(fullUrl);
       onUpload(fullUrl); // Pass back the full URL to parent

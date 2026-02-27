@@ -55,7 +55,7 @@ const InquiriesManager = () => {
   const openModal = (inquiry) => {
     setSelectedInquiry(inquiry);
     if (inquiry.status === "New") {
-      updateStatus(inquiry._id, "Read");
+      updateStatus(inquiry.id, "Read");
     }
   };
 
@@ -82,7 +82,13 @@ const InquiriesManager = () => {
   };
 
   const formatDate = (dateString) => {
+    if (!dateString) return "";
+    // If it's already in DD/MM/YYYY format, passing it to new Date() causes Invalid Date.
+    if (dateString.includes("/")) return dateString;
+
+    // Otherwise parse it (e.g., if it's an ISO timestamp from MongoDB legacy data)
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString; // Fallback to raw string
     return date.toLocaleDateString("en-GB"); // DD/MM/YYYY
   };
 
@@ -110,7 +116,7 @@ const InquiriesManager = () => {
             <tbody>
               {inquiries.map((inquiry) => (
                 <tr
-                  key={inquiry._id}
+                  key={inquiry.id}
                   className={inquiry.status === "New" ? "new-inquiry" : ""}
                 >
                   <td>{formatDate(inquiry.date)}</td>
@@ -136,7 +142,7 @@ const InquiriesManager = () => {
                         className="action-btn edit"
                         onClick={(e) => {
                           e.stopPropagation();
-                          updateStatus(inquiry._id, "Contacted");
+                          updateStatus(inquiry.id, "Contacted");
                         }}
                         title="Mark as Contacted"
                       >
@@ -147,7 +153,7 @@ const InquiriesManager = () => {
                       className="action-btn delete"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleDelete(inquiry._id);
+                        handleDelete(inquiry.id);
                       }}
                       title="Delete Inquiry"
                     >

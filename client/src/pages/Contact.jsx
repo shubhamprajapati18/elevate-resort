@@ -4,6 +4,7 @@ import SectionTitle from "../components/common/SectionTitle";
 import Button from "../components/common/Button";
 import axios from "axios";
 import API_URL from "../config";
+import headerImage from "../assets/A3.png";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -57,7 +58,7 @@ const Contact = () => {
       <PageHeader
         title="Contact Us"
         subtitle="Get in Touch"
-        bgImage="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        bgImage={headerImage}
       />
 
       <section className="section">

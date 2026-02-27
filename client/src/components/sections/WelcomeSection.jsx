@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SectionTitle from "../common/SectionTitle";
 import Button from "../common/Button";
 import "./WelcomeSection.css";
+import welcomeImage from "../../assets/F1.png";
 
 const WelcomeSection = () => {
   const [expanded, setExpanded] = useState(false);
@@ -10,10 +11,7 @@ const WelcomeSection = () => {
     <section className="section welcome-section" id="welcome">
       <div className="container welcome-container">
         <div className="welcome-image" data-aos="fade-right">
-          <img
-            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-            alt="Elevate Resort Welcome"
-          />
+          <img src={welcomeImage} alt="Elevate Resort Welcome" />
           <div className="image-overlay-box">
             <h4>Luxury Redefined</h4>
           </div>

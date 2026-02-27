@@ -111,7 +111,7 @@ const GalleryManager = () => {
             </thead>
             <tbody>
               {images.map((img) => (
-                <tr key={img._id}>
+                <tr key={img.id}>
                   <td>
                     <img
                       src={img.url}
@@ -124,7 +124,7 @@ const GalleryManager = () => {
                   <td>
                     <button
                       className="action-btn delete"
-                      onClick={() => handleDelete(img._id)}
+                      onClick={() => handleDelete(img.id)}
                     >
                       <FaTrash />
                     </button>

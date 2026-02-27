@@ -2,6 +2,7 @@ import React from "react";
 import PageHeader from "../components/common/PageHeader";
 import SectionTitle from "../components/common/SectionTitle";
 import FeatureCard from "../components/common/FeatureCard";
+import headerImage from "../assets/C1.png";
 import {
   FaSolarPanel,
   FaCloudRain,
@@ -18,7 +19,7 @@ const About = () => {
       <PageHeader
         title="About Us"
         subtitle="Our Journey & Vision"
-        bgImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        bgImage={headerImage}
       />
 
       <section className="section">

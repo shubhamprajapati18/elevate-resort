@@ -79,6 +79,22 @@ const RoomsManager = () => {
       },
     };
 
+    // --- Form Validations ---
+    if (
+      !formData.title ||
+      !formData.description ||
+      !formData.price ||
+      !formData.image
+    ) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    if (isNaN(formData.price) || Number(formData.price) <= 0) {
+      alert("Please enter a valid positive number for the price.");
+      return;
+    }
+
     const roomData = {
       ...formData,
       amenities: formData.amenities.split(",").map((item) => item.trim()),
@@ -88,7 +104,7 @@ const RoomsManager = () => {
       if (currentRoom) {
         // Update
         await axios.put(
-          `${API_URL}/api/rooms/${currentRoom._id}`,
+          `${API_URL}/api/rooms/${currentRoom.id}`,
           roomData,
           config,
         );
@@ -101,6 +117,9 @@ const RoomsManager = () => {
     } catch (err) {
       console.error(err);
       alert("Error saving room");
+      if (err.response && err.response.data && err.response.data.msg) {
+        alert(err.response.data.msg);
+      }
     }
   };
 
@@ -148,7 +167,7 @@ const RoomsManager = () => {
             </thead>
             <tbody>
               {rooms.map((room) => (
-                <tr key={room._id}>
+                <tr key={room.id}>
                   <td>
                     <img
                       src={room.image}
@@ -168,7 +187,7 @@ const RoomsManager = () => {
                     </button>
                     <button
                       className="action-btn delete"
-                      onClick={() => handleDelete(room._id)}
+                      onClick={() => handleDelete(room.id)}
                     >
                       <FaTrash />
                     </button>

@@ -1,17 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const Testimonial = require("../models/Testimonial");
+const supabase = require("../supabaseClient");
 const auth = require("../middleware/auth");
+const { v4: uuidv4 } = require("uuid");
 
 // @route   GET api/testimonials
 // @desc    Get all testimonials
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    const testimonials = await Testimonial.find();
+    const { data: testimonials, error } = await supabase
+      .from("testimonials")
+      .select("*")
+      .order("date", { ascending: false });
+
+    if (error) throw error;
     res.json(testimonials);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send("Server Error");
   }
 });
@@ -21,11 +27,19 @@ router.get("/", async (req, res) => {
 // @access  Private (Admin)
 router.post("/", auth, async (req, res) => {
   try {
-    const newTestimonial = new Testimonial(req.body);
-    const testimonial = await newTestimonial.save();
+    const { name, rating, text } = req.body;
+    const { data: testimonial, error } = await supabase
+      .from("testimonials")
+      .insert([
+        { id: uuidv4(), name, rating, text, date: new Date().toISOString() },
+      ])
+      .select()
+      .single();
+
+    if (error) throw error;
     res.json(testimonial);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send("Server Error");
   }
 });
@@ -35,14 +49,24 @@ router.post("/", auth, async (req, res) => {
 // @access  Private (Admin)
 router.delete("/:id", auth, async (req, res) => {
   try {
-    let testimonial = await Testimonial.findById(req.params.id);
-    if (!testimonial)
+    const { data: existing, error: findError } = await supabase
+      .from("testimonials")
+      .select("id")
+      .eq("id", req.params.id)
+      .single();
+
+    if (findError || !existing)
       return res.status(404).json({ msg: "Testimonial not found" });
 
-    await Testimonial.findByIdAndDelete(req.params.id);
+    const { error: deleteError } = await supabase
+      .from("testimonials")
+      .delete()
+      .eq("id", req.params.id);
+
+    if (deleteError) throw deleteError;
     res.json({ msg: "Testimonial removed" });
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send("Server Error");
   }
 });

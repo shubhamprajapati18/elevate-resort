@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
 
 dotenv.config();
 
@@ -13,11 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
-// Database Connection
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+// No local db init script right now, database handles requests via `supabaseClient` directly on routes.
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));

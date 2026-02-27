@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API_URL from "../config";
 import RoomCard from "../components/common/RoomCard";
+import headerImage from "../assets/Room2.png";
 import PageHeader from "../components/common/PageHeader";
 import "./Accommodation.css";
 
@@ -30,7 +31,7 @@ const Accommodation = () => {
       <PageHeader
         title="Luxury Accommodation"
         subtitle="Stay in Comfort & Style"
-        bgImage="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        bgImage={headerImage}
       />
 
       <section className="section">

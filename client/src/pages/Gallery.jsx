@@ -3,6 +3,7 @@ import API_URL from "../config";
 import SectionTitle from "../components/common/SectionTitle";
 import PageHeader from "../components/common/PageHeader";
 import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import headerImage from "../assets/F03.png";
 import "./Gallery.css";
 
 // Images fetched from API
@@ -24,7 +25,7 @@ const Gallery = () => {
           // API returns { _id, url, category, caption }
           // Component expects { id, src, category, alt }
           const formattedImages = res.data.map((img) => ({
-            id: img._id,
+            id: img.id,
             src: img.url,
             category: img.category,
             alt: img.caption || img.category,
@@ -67,7 +68,7 @@ const Gallery = () => {
       <PageHeader
         title="Photo Gallery"
         subtitle="Capturing Moments"
-        bgImage="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        bgImage={headerImage}
       />
 
       <section className="section">

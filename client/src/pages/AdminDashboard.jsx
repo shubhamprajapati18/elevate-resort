@@ -96,10 +96,18 @@ const AdminDashboard = () => {
             </thead>
             <tbody>
               {inquiries.map((inquiry) => (
-                <tr key={inquiry._id}>
+                <tr key={inquiry.id}>
                   <td>{inquiry.name}</td>
                   <td>{inquiry.eventType}</td>
-                  <td>{new Date(inquiry.date).toLocaleDateString()}</td>
+                  <td>
+                    {(() => {
+                      if (!inquiry.date) return "";
+                      if (inquiry.date.includes("/")) return inquiry.date;
+                      const d = new Date(inquiry.date);
+                      if (isNaN(d.getTime())) return inquiry.date;
+                      return d.toLocaleDateString("en-GB");
+                    })()}
+                  </td>
                   <td>
                     <span className={`status ${inquiry.status.toLowerCase()}`}>
                       {inquiry.status}

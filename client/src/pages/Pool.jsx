@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PageHeader from "../components/common/PageHeader";
 import "./Pool.css";
+import headerImage from "../assets/Scene15.png";
 import {
   FaWater,
   FaChild,
@@ -13,6 +15,8 @@ import {
 import AOS from "aos";
 
 const Pool = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.refresh();
   }, []);
@@ -63,7 +67,7 @@ const Pool = () => {
       <PageHeader
         title="POOL & LEISURE"
         subtitle="Dive into relaxation at Gorakhpur's finest swimming pool and leisure destination."
-        bgImage="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        bgImage={headerImage}
       />
 
       {/* Section 1: A World of Leisure */}
@@ -123,7 +127,12 @@ const Pool = () => {
           </div>
 
           <div className="text-center mt-5" data-aos="fade-up">
-            <button className="gold-btn">BOOK POOL DAY PASS</button>
+            <button
+              className="gold-btn"
+              onClick={() => navigate("/contact-us")}
+            >
+              BOOK POOL DAY PASS
+            </button>
           </div>
         </div>
       </section>

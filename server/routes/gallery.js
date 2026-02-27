@@ -1,17 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const Gallery = require("../models/Gallery");
+const supabase = require("../supabaseClient");
 const auth = require("../middleware/auth");
+const { v4: uuidv4 } = require("uuid");
 
 // @route   GET api/gallery
 // @desc    Get all gallery images
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    const images = await Gallery.find().sort({ dateAdded: -1 });
+    // Note: Supabase orders by datetime via order() rather than .sort()
+    const { data: images, error } = await supabase
+      .from("gallery")
+      .select("*")
+      .order("dateAdded", { ascending: false });
+
+    if (error) throw error;
     res.json(images);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send("Server Error");
   }
 });
@@ -21,11 +28,25 @@ router.get("/", async (req, res) => {
 // @access  Private (Admin)
 router.post("/", auth, async (req, res) => {
   try {
-    const newImage = new Gallery(req.body);
-    const image = await newImage.save();
+    const { url, category, caption } = req.body;
+    const { data: image, error } = await supabase
+      .from("gallery")
+      .insert([
+        {
+          id: uuidv4(),
+          url,
+          category,
+          caption,
+          dateAdded: new Date().toISOString(),
+        },
+      ])
+      .select()
+      .single();
+
+    if (error) throw error;
     res.json(image);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send("Server Error");
   }
 });
@@ -35,13 +56,24 @@ router.post("/", auth, async (req, res) => {
 // @access  Private (Admin)
 router.delete("/:id", auth, async (req, res) => {
   try {
-    let image = await Gallery.findById(req.params.id);
-    if (!image) return res.status(404).json({ msg: "Image not found" });
+    const { data: image, error: findError } = await supabase
+      .from("gallery")
+      .select("id")
+      .eq("id", req.params.id)
+      .single();
 
-    await Gallery.findByIdAndDelete(req.params.id);
+    if (findError || !image)
+      return res.status(404).json({ msg: "Image not found" });
+
+    const { error: deleteError } = await supabase
+      .from("gallery")
+      .delete()
+      .eq("id", req.params.id);
+
+    if (deleteError) throw deleteError;
     res.json({ msg: "Image removed" });
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send("Server Error");
   }
 });

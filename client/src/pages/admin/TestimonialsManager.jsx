@@ -116,7 +116,7 @@ const TestimonialsManager = () => {
             </thead>
             <tbody>
               {testimonials.map((t) => (
-                <tr key={t._id}>
+                <tr key={t.id}>
                   <td>
                     {t.image && (
                       <img src={t.image} alt={t.name} className="table-img" />
@@ -128,7 +128,7 @@ const TestimonialsManager = () => {
                   <td>
                     <button
                       className="action-btn delete"
-                      onClick={() => handleDelete(t._id)}
+                      onClick={() => handleDelete(t.id)}
                     >
                       <FaTrash />
                     </button>
