@@ -56,7 +56,7 @@ Welcome to the **Elevate Resort** web application. This project is a full-stack 
 
     ```bash
     cd server
-    npm run dev
+    node server.js
     ```
 
     _Server runs on http://localhost:5000_
@@ -93,6 +93,6 @@ For detailed, step-by-step deployment instructions, please refer to the **[Verce
 
 - **Frontend**: React.js, Vite, CSS3, React Router DOM, Axios
 - **Backend**: Node.js, Express.js
-- **Database**: MongoDB, Mongoose
+- **Database**: Supabase
 - **Authentication**: JWT (JSON Web Tokens)
-- **Image Handling**: Multer (Local/Server) / URL-based
+- **Image Handling**: Multer (Local/Server)
